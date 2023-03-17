@@ -1,3 +1,9 @@
 <button type="button" class="customButton">
-  {{label}}
+  <i-feather *ngIf="idRole === buttonRole.New" name="plus" class="buttonIcon" />
+  <i-feather
+    *ngIf="idRole === buttonRole.Save"
+    name="save"
+    class="buttonIcon" />
+  <i-feather *ngIf="idRole === buttonRole.Cancel" name="x" class="buttonIcon" />
+  <span>{{ label }}</span>
 </button>

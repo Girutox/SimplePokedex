@@ -1,7 +1,20 @@
 .customButton {
-  background-color: #655aee;
+  font-size: 1.2rem;
+  font-weight: bold;
   color: white;
+
+  background-color: #655aee;
   border-radius: 5px;
   border: 0;
-  font-size: 1.2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  padding: 0 10px;
+
+  .buttonIcon {
+    margin-right: 5px;
+  }
 }
