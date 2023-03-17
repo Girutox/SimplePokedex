@@ -1,0 +1,30 @@
+.formControl {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .inputGroup {
+    position: relative;
+
+    .inputIcon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      margin: auto 0;
+    }
+
+    > input {
+      padding: 12px 0;
+    }
+
+    .inputGroupWithIcon {
+      padding-left: 40px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="formControl">
+  <label [for]="name">{{ label }}</label>
+  <div class="inputGroup">
+    <i-feather
+      *ngIf="idRole === inputRole.Search"
+      name="search"
+      class="inputIcon" />
+    <input
+      type="text"
+      [name]="name"
+      [id]="name"
+      [placeholder]="placeHolder"
+      [class.inputGroupWithIcon]="idRole === inputRole.Search" />
+  </div>
+</div>
