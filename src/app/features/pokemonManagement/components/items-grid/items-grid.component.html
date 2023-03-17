@@ -1,0 +1,42 @@
+<div class="gridGroup">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Ataque</th>
+        <th>Defensa</th>
+        <th class="customSize01">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pokemon">
+        <td class="leftColumn">{{ item.name }}</td>
+        <td class="centerColumn">
+          <img
+            [src]="item.image"
+            [alt]="'Imagen del pokemon ' + item.name"
+            width="50"
+            height="50" />
+        </td>
+        <td class="rightColumn">{{ item.attack }}</td>
+        <td class="rightColumn">{{ item.defense }}</td>
+        <td class="centerColumn">
+          <div class="actionColumn">
+            <app-custom-button
+              [idRole]="4"
+              label=""
+              class="button-noBackground" />
+            <app-custom-button
+              [idRole]="5"
+              label=""
+              class="button-noBackground" />
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="!pokemon.length" class="emptyData">
+        <td colspan="5">No existen registros</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

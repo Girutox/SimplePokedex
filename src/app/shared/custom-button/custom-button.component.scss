@@ -20,3 +20,14 @@
     margin-right: 5px;
   }
 }
+
+:host.button-noBackground {
+  button {
+    background-color: transparent;
+  }
+
+  .buttonIcon {
+    color: #655aee;
+    margin: 0;
+  }
+}

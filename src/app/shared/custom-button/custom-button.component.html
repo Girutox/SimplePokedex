@@ -5,5 +5,13 @@
     name="save"
     class="buttonIcon" />
   <i-feather *ngIf="idRole === buttonRole.Cancel" name="x" class="buttonIcon" />
-  <span>{{ label }}</span>
+  <i-feather
+    *ngIf="idRole === buttonRole.Edit"
+    name="edit"
+    class="buttonIcon" />
+  <i-feather
+    *ngIf="idRole === buttonRole.Delete"
+    name="trash"
+    class="buttonIcon" />
+  <span *ngIf="label !== ''">{{ label }}</span>
 </button>

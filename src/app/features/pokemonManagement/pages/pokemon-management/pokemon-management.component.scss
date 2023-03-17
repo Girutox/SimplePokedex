@@ -1,7 +1,18 @@
-.toolbar {
+.mainContainer {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  padding: 20px 0;
+  .card {
+    width: 100%;
+    max-width: 800px;
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+  }
 }

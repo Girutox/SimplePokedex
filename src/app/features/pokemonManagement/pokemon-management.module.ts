@@ -4,12 +4,14 @@ import { FilterGroupComponent } from './components/filter-group/filter-group.com
 import { PokemonManagementComponent } from './pages/pokemon-management/pokemon-management.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ActionsHeaderComponent } from './components/actions-header/actions-header.component';
+import { ItemsGridComponent } from './components/items-grid/items-grid.component';
 
 @NgModule({
   declarations: [
     FilterGroupComponent,
     PokemonManagementComponent,
     ActionsHeaderComponent,
+    ItemsGridComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [PokemonManagementComponent],
