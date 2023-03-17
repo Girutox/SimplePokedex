@@ -6,6 +6,7 @@ import { Search, Plus, Save, X, Edit, Trash } from 'angular-feather/icons';
 
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { CustomInputTextComponent } from './custom-input-text/custom-input-text.component';
+import { CustomInputRangeComponent } from './custom-input-range/custom-input-range.component';
 
 const icons = {
   Search,
@@ -17,8 +18,17 @@ const icons = {
 };
 
 @NgModule({
-  declarations: [CustomButtonComponent, CustomInputTextComponent],
-  exports: [CustomButtonComponent, FeatherModule, CustomInputTextComponent],
+  declarations: [
+    CustomButtonComponent,
+    CustomInputTextComponent,
+    CustomInputRangeComponent,
+  ],
+  exports: [
+    CustomButtonComponent,
+    FeatherModule,
+    CustomInputTextComponent,
+    CustomInputRangeComponent,
+  ],
   imports: [CommonModule, FeatherModule.pick(icons)],
 })
 export class SharedModule {}

@@ -11,6 +11,4 @@ export class CustomButtonComponent {
   @Input() label: string | undefined;
 
   buttonRole = ButtonRole;
-
-  // constructor() {}
 }

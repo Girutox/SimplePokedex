@@ -1,18 +1,23 @@
 .mainContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .card {
     width: 100%;
     max-width: 800px;
+    padding: 20px;
 
     .toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      margin-bottom: 20px;
     }
   }
 }

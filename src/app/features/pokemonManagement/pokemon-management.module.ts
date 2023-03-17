@@ -5,6 +5,7 @@ import { PokemonManagementComponent } from './pages/pokemon-management/pokemon-m
 import { SharedModule } from '../../shared/shared.module';
 import { ActionsHeaderComponent } from './components/actions-header/actions-header.component';
 import { ItemsGridComponent } from './components/items-grid/items-grid.component';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ItemsGridComponent } from './components/items-grid/items-grid.component
     PokemonManagementComponent,
     ActionsHeaderComponent,
     ItemsGridComponent,
+    FormComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [PokemonManagementComponent],

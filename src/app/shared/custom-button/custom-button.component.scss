@@ -31,3 +31,9 @@
     margin: 0;
   }
 }
+
+:host.mr-1 {
+  button {
+    margin-right: 5px;
+  }
+}

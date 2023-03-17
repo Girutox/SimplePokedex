@@ -1,0 +1,40 @@
+<div class="formGroup">
+  <h2 class="title">
+    {{ (formStatus.New ? 'Nuevo' : 'Editar') + ' Pokemon' }}
+  </h2>
+  <form class="formContainer" action="">
+    <section class="controls">
+      <div class="column column1">
+        <app-custom-input-text
+          [idRole]="inputRole.Form"
+          label="Nombre"
+          name="name"
+          placeHolder="Ingrese nombre..." />
+        <app-custom-input-text
+          [idRole]="inputRole.Form"
+          label="Imágen"
+          name="image"
+          placeHolder="Ingrese URL de la imagen..." />
+      </div>
+      <div class="column column2">
+        <app-custom-input-range
+          label="Ataque: "
+          name="attack"
+          [minValue]="0"
+          [maxValue]="100" />
+        <app-custom-input-range
+          label="Defensa: "
+          name="defense"
+          [minValue]="0"
+          [maxValue]="100" />
+      </div>
+    </section>
+    <section class="actions">
+      <app-custom-button
+        [idRole]="buttonRole.Save"
+        label="Guardar"
+        class="mr-1" />
+      <app-custom-button [idRole]="buttonRole.Cancel" label="Cancelar" />
+    </section>
+  </form>
+</div>

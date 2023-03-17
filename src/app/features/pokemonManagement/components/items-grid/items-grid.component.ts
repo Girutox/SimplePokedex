@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
+import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 
 @Component({
   selector: 'app-items-grid',
@@ -7,6 +8,8 @@ import { Pokemon } from '../../models/pokemon';
   styleUrls: ['./items-grid.component.scss'],
 })
 export class ItemsGridComponent {
+  buttonRole = ButtonRole;
+
   pokemon: Pokemon[] = [
     {
       id: 355,
