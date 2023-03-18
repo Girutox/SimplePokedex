@@ -1,6 +1,8 @@
 @use 'src/app/styles/variables' as vars;
 
 .gridGroup {
+  overflow-x: auto;
+
   table {
     width: 100%;
 
