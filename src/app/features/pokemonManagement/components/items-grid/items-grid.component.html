@@ -1,5 +1,5 @@
 <div class="gridGroup">
-  <table>
+  <table *ngIf="!loading">
     <thead>
       <tr>
         <th>Nombre</th>
@@ -39,4 +39,7 @@
       </tr>
     </tbody>
   </table>
+  <div *ngIf="loading">
+    <h2>Cargando información de pokemons...</h2>
+  </div>
 </div>

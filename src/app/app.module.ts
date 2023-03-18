@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PokemonManagementModule } from './features/pokemonManagement/pokemon-management.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { PokemonManagementModule } from './features/pokemonManagement/pokemon-ma
     AppRoutingModule,
     SharedModule,
     PokemonManagementModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
