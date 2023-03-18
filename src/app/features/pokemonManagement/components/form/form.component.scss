@@ -1,6 +1,7 @@
 .formGroup {
   background-color: white;
   padding: 15px;
+  border: 1px solid gray;
 
   .title {
     font-weight: bold;
@@ -21,7 +22,7 @@
       align-items: center;
       flex-wrap: wrap;
 
-      margin-top: 20px;
+      margin: 20px 0 40px 0;
 
       .column {
         display: flex;
