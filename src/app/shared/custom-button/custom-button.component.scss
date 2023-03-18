@@ -1,9 +1,11 @@
+@use 'src/app/styles/variables' as vars;
+
 .customButton {
   font-size: 1.2rem;
   font-weight: 600;
   color: white;
 
-  background-color: #655aee;
+  background-color: vars.$primary-color;
   border-radius: 5px;
   border: 0;
 
@@ -21,13 +23,18 @@
   }
 }
 
+.disabled {
+  background-color: rgba(vars.$primary-color, 0.59);
+  cursor: not-allowed;
+}
+
 :host.button-noBackground {
   button {
     background-color: transparent;
   }
 
   .buttonIcon {
-    color: #655aee;
+    color: vars.$primary-color;
     margin: 0;
   }
 }

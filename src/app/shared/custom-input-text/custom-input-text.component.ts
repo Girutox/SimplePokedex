@@ -7,10 +7,10 @@ import { InputRole } from '../../core/enums/inputRole.enum';
   styleUrls: ['./custom-input-text.component.scss'],
 })
 export class CustomInputTextComponent {
-  @Input() idRole: number | undefined;
-  @Input() label: string | undefined;
-  @Input() name: string | undefined;
-  @Input() placeHolder: string | undefined;
+  @Input() idRole = 1;
+  @Input() label = '';
+  @Input() name = '';
+  @Input() placeHolder = '';
 
   inputRole = InputRole;
 }

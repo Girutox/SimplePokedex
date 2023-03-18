@@ -9,7 +9,7 @@ import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent {
-  @Input() idRole: number | undefined;
+  @Input() idRole = 1;
 
   formStatus = FormStatus;
   inputRole = InputRole;

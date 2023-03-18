@@ -6,8 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./custom-input-range.component.scss'],
 })
 export class CustomInputRangeComponent {
-  @Input() label: string | undefined;
-  @Input() name: string | undefined;
-  @Input() minValue: number | undefined;
-  @Input() maxValue: number | undefined;
+  @Input() label = '';
+  @Input() name = '';
+  @Input() minValue = 0;
+  @Input() maxValue = 50;
+
+  value = 50;
 }

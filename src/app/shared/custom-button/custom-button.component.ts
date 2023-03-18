@@ -7,8 +7,9 @@ import { ButtonRole } from '../../core/enums/buttonRole.enum';
   styleUrls: ['./custom-button.component.scss'],
 })
 export class CustomButtonComponent {
-  @Input() idRole: number | undefined;
-  @Input() label: string | undefined;
+  @Input() idRole = 1;
+  @Input() label = '';
+  @Input() enabled = true;
 
   buttonRole = ButtonRole;
 }

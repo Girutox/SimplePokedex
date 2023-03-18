@@ -1,8 +1,9 @@
 <div class="formControl">
-  <label [for]="name">{{ label }}</label>
+  <label [for]="name">{{ label }} ({{ value }})</label>
   <span>{{ minValue }}</span>
   <input
     type="range"
+    [(ngModel)]="value"
     [name]="name"
     [id]="name"
     [min]="minValue"

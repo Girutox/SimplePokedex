@@ -7,6 +7,7 @@ import { Search, Plus, Save, X, Edit, Trash } from 'angular-feather/icons';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { CustomInputTextComponent } from './custom-input-text/custom-input-text.component';
 import { CustomInputRangeComponent } from './custom-input-range/custom-input-range.component';
+import { FormsModule } from '@angular/forms';
 
 const icons = {
   Search,
@@ -29,6 +30,6 @@ const icons = {
     CustomInputTextComponent,
     CustomInputRangeComponent,
   ],
-  imports: [CommonModule, FeatherModule.pick(icons)],
+  imports: [CommonModule, FeatherModule.pick(icons), FormsModule],
 })
 export class SharedModule {}

@@ -1,7 +1,9 @@
+@use 'src/app/styles/variables' as vars;
+
 .formGroup {
   background-color: white;
   padding: 15px;
-  border: 1px solid gray;
+  border: 1px solid vars.$secondary-color;
 
   .title {
     font-weight: bold;
