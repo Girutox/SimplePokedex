@@ -2,13 +2,13 @@
   <h2 class="title">
     {{ (formStatus.New ? 'Nuevo' : 'Editar') + ' Pokemon' }}
   </h2>
-  <form class="formContainer" action="">
+  <form class="formContainer" [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
     <section class="controls">
       <div class="column column1">
         <app-custom-input-text
           [idRole]="inputRole.Form"
           label="Nombre"
-          name="name"
+          formControlName="name"
           placeHolder="Ingrese nombre..." />
         <app-custom-input-text
           [idRole]="inputRole.Form"
@@ -19,12 +19,12 @@
       <div class="column column2">
         <app-custom-input-range
           label="Ataque: "
-          name="attack"
+          formControlName="attack"
           [minValue]="0"
           [maxValue]="100" />
         <app-custom-input-range
           label="Defensa: "
-          name="defense"
+          formControlName="defense"
           [minValue]="0"
           [maxValue]="100" />
       </div>
@@ -32,10 +32,14 @@
     <section class="actions">
       <app-custom-button
         [idRole]="buttonRole.Save"
+        type="submit"
         label="Guardar"
-        [enabled]="false"
+        [enabled]="true"
         class="mr-1" />
-      <app-custom-button [idRole]="buttonRole.Cancel" label="Cancelar" />
+      <app-custom-button
+        [idRole]="buttonRole.Cancel"
+        type="button"
+        label="Cancelar" />
     </section>
   </form>
 </div>

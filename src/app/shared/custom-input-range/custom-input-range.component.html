@@ -3,10 +3,10 @@
   <span>{{ minValue }}</span>
   <input
     type="range"
-    [(ngModel)]="value"
-    [name]="name"
     [id]="name"
     [min]="minValue"
-    [max]="maxValue" />
+    [max]="maxValue"
+    [value]="value"
+    (input)="onInput($event)" />
   <span>{{ maxValue }}</span>
 </div>

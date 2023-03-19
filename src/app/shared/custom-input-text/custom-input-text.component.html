@@ -7,9 +7,10 @@
       class="inputIcon" />
     <input
       type="text"
-      [name]="name"
       [id]="name"
       [placeholder]="placeHolder"
-      [class.inputGroupWithIcon]="idRole === inputRole.Search" />
+      [class.inputGroupWithIcon]="idRole === inputRole.Search"
+      [value]="value"
+      (input)="onInput($event)" />
   </div>
 </div>

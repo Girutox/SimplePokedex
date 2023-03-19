@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ActionsHeaderComponent } from './components/actions-header/actions-header.component';
 import { ItemsGridComponent } from './components/items-grid/items-grid.component';
 import { FormComponent } from './components/form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { FormComponent } from './components/form/form.component';
     ItemsGridComponent,
     FormComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [PokemonManagementComponent],
 })
 export class PokemonManagementModule {}

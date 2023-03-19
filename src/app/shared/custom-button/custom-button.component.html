@@ -1,4 +1,4 @@
-<button type="button" class="customButton" [class.disabled]="!enabled">
+<button [type]="type" class="customButton" [class.disabled]="!enabled">
   <i-feather *ngIf="idRole === buttonRole.New" name="plus" class="buttonIcon" />
   <i-feather
     *ngIf="idRole === buttonRole.Save"

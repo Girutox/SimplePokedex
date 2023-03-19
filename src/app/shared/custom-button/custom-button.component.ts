@@ -8,6 +8,7 @@ import { ButtonRole } from '../../core/enums/buttonRole.enum';
 })
 export class CustomButtonComponent {
   @Input() idRole = 1;
+  @Input() type = 'button';
   @Input() label = '';
   @Input() enabled = true;
 
