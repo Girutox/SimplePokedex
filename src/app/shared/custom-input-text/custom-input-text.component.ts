@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { InputRole } from '../../core/enums/inputRole.enum';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input-text',
@@ -28,7 +28,7 @@ export class CustomInputTextComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched: any = () => {};
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     this.value = value;
   }
 

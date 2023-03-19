@@ -1,7 +1,7 @@
 .formControl {
   font-weight: bold;
 
-  span:nth-of-type(1) {
-    margin-left: 15px;
+  > div {
+    margin-bottom: 5px;
   }
 }

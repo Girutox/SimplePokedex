@@ -3,6 +3,9 @@ import { FormStatus } from '../../../../core/enums/formStatus';
 import { InputRole } from '../../../../core/enums/inputRole.enum';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Pokemon } from '../../models/pokemon';
+import { PokemonService } from '../../services/pokemon.service';
+import { environment } from '../../../../../environments/environments';
 
 @Component({
   selector: 'app-form',
@@ -11,23 +14,101 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormComponent {
   @Input() idRole = 1;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  @Input() fetchPokemons: any | undefined;
 
   formStatus = FormStatus;
+  formStatusValue = this.formStatus.New;
+  pokemonName = '';
+
   inputRole = InputRole;
   buttonRole = ButtonRole;
 
   pokemonForm: FormGroup;
+  pokemonFormOld: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  errorMessage = '';
+  loading = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private pokemonService: PokemonService
+  ) {
     this.pokemonForm = this.formBuilder.group({
+      id: 0,
       name: ['', Validators.required],
       image: '',
       attack: 50,
       defense: 50,
+      hp: 50,
+      type: ['', Validators.required],
     });
+    this.pokemonFormOld = this.pokemonForm.value;
+  }
+
+  onEdit(item: Pokemon): void {
+    this.formStatusValue = FormStatus.Edit;
+
+    const controls = this.pokemonForm.controls;
+    controls['id'].setValue(item.id);
+
+    this.pokemonName = item.name;
+    controls['name'].setValue(item.name);
+
+    controls['image'].setValue(item.image);
+    controls['attack'].setValue(item.attack);
+    controls['defense'].setValue(item.defense);
+    controls['hp'].setValue(item.hp);
+    controls['type'].setValue(item.type);
   }
 
   onSubmit(): void {
-    console.log(this.pokemonForm.value);
+    if (this.pokemonForm.invalid) return;
+
+    this.createPokemon();
+  }
+
+  onCancel(): void {
+    this.formStatusValue = FormStatus.New;
+    this.pokemonForm.reset(this.pokemonFormOld);
+  }
+
+  createPokemon(): void {
+    this.errorMessage = '';
+    this.loading = true;
+
+    const controls = this.pokemonForm.controls;
+
+    this.pokemonService
+      .createPokemon({
+        id: controls['id'].value,
+        name: controls['name'].value,
+        image: controls['image'].value,
+        attack: controls['attack'].value,
+        defense: controls['defense'].value,
+        hp: controls['hp'].value,
+        type: controls['type'].value,
+        idAuthor: environment.idAuthor,
+      })
+      .subscribe({
+        next: data => {
+          this.loading = false;
+          this.onCancel();
+
+          if (this.fetchPokemons) this.fetchPokemons.fetchPokemons();
+        },
+        error: error => {
+          this.loading = false;
+
+          if (error.status === 400) {
+            this.errorMessage = 'petición errónea de la información';
+          } else if (error.status === 402) {
+            this.errorMessage =
+              'no se ha provisto el "Nombre" para el registro de la información';
+          } else {
+            this.errorMessage = 'desconocido';
+          }
+        },
+      });
   }
 }

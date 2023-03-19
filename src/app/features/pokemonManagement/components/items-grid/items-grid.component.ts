@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 import { PokemonService } from '../../services/pokemon.service';
+import { environment } from '../../../../../environments/environments';
 
 @Component({
   selector: 'app-items-grid',
@@ -15,10 +16,19 @@ export class ItemsGridComponent implements OnInit {
   loading = false;
   errorMessage = '';
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.fetchPokemons();
+  }
+
+  onDelete(id: number): void {
+    if (confirm('¿Desea eliminar el registro seleccionado?')) {
+      this.deletePokemonById(id);
+    }
   }
 
   fetchPokemons(): void {
@@ -26,10 +36,38 @@ export class ItemsGridComponent implements OnInit {
     this.loading = true;
 
     this.pokemon = [];
-    this.pokemonService.fetchPokemons({ idAuthor: 1 }).subscribe({
+    this.pokemonService
+      .fetchPokemons({ idAuthor: environment.idAuthor })
+      .subscribe({
+        next: data => {
+          this.pokemon = data;
+          this.loading = false;
+        },
+        error: error => {
+          this.loading = false;
+
+          if (error.status === 400) {
+            this.errorMessage = 'petición errónea de la información';
+          } else if (error.status === 404) {
+            this.errorMessage =
+              'no se ha provisto el "IdAuthor" para la búsqueda de información';
+          } else {
+            this.errorMessage = 'desconocido';
+          }
+        },
+      });
+  }
+
+  deletePokemonById(id: number): void {
+    this.errorMessage = '';
+    this.loading = true;
+
+    this.pokemon = [];
+    this.pokemonService.deletePokemonById(id).subscribe({
       next: data => {
-        this.pokemon = data;
         this.loading = false;
+
+        this.fetchPokemons();
       },
       error: error => {
         this.loading = false;
@@ -38,10 +76,12 @@ export class ItemsGridComponent implements OnInit {
           this.errorMessage = 'petición errónea de la información';
         } else if (error.status === 404) {
           this.errorMessage =
-            'no se ha provisto el "IdAuthor" para la búsqueda de información';
+            'no se pudo encontrar el registro para ser eliminado';
         } else {
           this.errorMessage = 'desconocido';
         }
+
+        this.changeDetectorRef.detectChanges();
       },
     });
   }

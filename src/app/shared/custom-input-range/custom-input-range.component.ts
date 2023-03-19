@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input-range',
@@ -25,7 +25,7 @@ export class CustomInputRangeComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched: any = () => {};
 
-  writeValue(value: any): void {
+  writeValue(value: number): void {
     this.value = value;
   }
 

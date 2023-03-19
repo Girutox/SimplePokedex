@@ -2,7 +2,7 @@
   <table *ngIf="!loading">
     <thead>
       <tr>
-        <th>Nombre</th>
+        <th>Nombre {{ loading }}</th>
         <th>Imagen</th>
         <th>Ataque</th>
         <th>Defensa</th>
@@ -25,11 +25,14 @@
           <div class="actionColumn">
             <app-custom-button
               [idRole]="buttonRole.Edit"
+              type="button"
               label=""
               class="button-noBackground" />
             <app-custom-button
               [idRole]="buttonRole.Delete"
+              type="button"
               label=""
+              (click)="onDelete(item.id)"
               class="button-noBackground" />
           </div>
         </td>

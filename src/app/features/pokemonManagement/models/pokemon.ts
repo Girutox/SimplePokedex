@@ -1,12 +1,12 @@
 export interface Pokemon {
   id: number;
   name: string;
-  image: string;
+  image?: string;
   attack: number;
   defense: number;
   hp: number;
   type: string;
-  idAuthor: number;
+  idAuthor?: number;
 }
 
 export interface PokemonFetch {
