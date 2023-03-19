@@ -15,7 +15,7 @@ import { environment } from '../../../../../environments/environments';
 export class FormComponent {
   @Input() idRole = 1;
   // eslint-disable-next-line @typescript-eslint/ban-types
-  @Input() fetchPokemons: any | undefined;
+  @Input() gridCompomentRef: any | undefined;
 
   formStatus = FormStatus;
   formStatusValue = this.formStatus.New;
@@ -100,7 +100,7 @@ export class FormComponent {
           this.loading = false;
           this.onCancel();
 
-          if (this.fetchPokemons) this.fetchPokemons.fetchPokemons();
+          this.fetchPokemons();
         },
         error: error => {
           this.loading = false;
@@ -138,7 +138,7 @@ export class FormComponent {
           this.loading = false;
           this.onCancel();
 
-          if (this.fetchPokemons) this.fetchPokemons.fetchPokemons();
+          this.fetchPokemons();
         },
         error: error => {
           this.loading = false;
@@ -153,5 +153,9 @@ export class FormComponent {
           }
         },
       });
+  }
+
+  fetchPokemons(): void {
+    if (this.gridCompomentRef) this.gridCompomentRef.fetchPokemons();
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 
 @Component({
@@ -7,5 +7,12 @@ import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
   styleUrls: ['./actions-header.component.scss'],
 })
 export class ActionsHeaderComponent {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  @Input() formCompomentRef: any | undefined;
+
   buttonRole = ButtonRole;
+
+  onNew(): void {
+    if (this.formCompomentRef) this.formCompomentRef.onCancel();
+  }
 }
