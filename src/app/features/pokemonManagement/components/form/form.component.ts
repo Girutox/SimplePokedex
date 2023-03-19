@@ -65,7 +65,12 @@ export class FormComponent {
   onSubmit(): void {
     if (this.pokemonForm.invalid) return;
 
-    this.createPokemon();
+    const id = this.pokemonForm.controls['id'].value;
+    if (this.formStatusValue === this.formStatus.New) {
+      this.createPokemon();
+    } else {
+      this.updatePokemonById(id);
+    }
   }
 
   onCancel(): void {
@@ -105,6 +110,44 @@ export class FormComponent {
           } else if (error.status === 402) {
             this.errorMessage =
               'no se ha provisto el "Nombre" para el registro de la información';
+          } else {
+            this.errorMessage = 'desconocido';
+          }
+        },
+      });
+  }
+
+  updatePokemonById(id: number): void {
+    this.errorMessage = '';
+    this.loading = true;
+
+    const controls = this.pokemonForm.controls;
+
+    this.pokemonService
+      .updatePokemonById(id, {
+        name: controls['name'].value,
+        image: controls['image'].value,
+        attack: controls['attack'].value,
+        defense: controls['defense'].value,
+        hp: controls['hp'].value,
+        type: controls['type'].value,
+        idAuthor: environment.idAuthor,
+      })
+      .subscribe({
+        next: data => {
+          this.loading = false;
+          this.onCancel();
+
+          if (this.fetchPokemons) this.fetchPokemons.fetchPokemons();
+        },
+        error: error => {
+          this.loading = false;
+
+          if (error.status === 400) {
+            this.errorMessage = 'petición errónea de la información';
+          } else if (error.status === 402) {
+            this.errorMessage =
+              'no se encontró el registro que se intentaba actualizar';
           } else {
             this.errorMessage = 'desconocido';
           }

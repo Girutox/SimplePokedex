@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Pokemon, PokemonFetch } from '../models/pokemon';
+import { Pokemon, PokemonFetch, PokemonUpdate } from '../models/pokemon';
 import { environment } from '../../../../environments/environments';
 
 @Injectable({
@@ -36,7 +36,7 @@ export class PokemonService {
     );
   }
 
-  updatePokemonById(id: number, payload: Pokemon): Observable<Pokemon> {
+  updatePokemonById(id: number, payload: PokemonUpdate): Observable<Pokemon> {
     return this.http
       .put<Pokemon>(`${environment.apiBaseUrl}${id}`, payload)
       .pipe(

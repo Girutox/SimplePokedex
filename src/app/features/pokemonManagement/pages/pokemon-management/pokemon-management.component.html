@@ -1,12 +1,11 @@
 <main class="mainContainer">
   <div class="card">
-    <button (click)="test()">Edit</button>
     <section class="toolbar">
       <app-filter-group></app-filter-group>
       <app-actions-header></app-actions-header>
     </section>
     <section class="grid">
-      <app-items-grid #grid></app-items-grid>
+      <app-items-grid #grid (idEmitter)="onEdit($event)"></app-items-grid>
     </section>
     <section class="form">
       <app-form #form [fetchPokemons]="grid"></app-form>

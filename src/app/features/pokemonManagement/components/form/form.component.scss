@@ -40,6 +40,16 @@
       }
     }
 
+    .errorMessages {
+      border: 1px solid vars.$error_color;
+      color: red;
+      background-color: rgba(vars.$error_color, 0.2);
+
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
     .actions {
       display: flex;
       justify-content: center;

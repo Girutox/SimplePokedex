@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 import { PokemonService } from '../../services/pokemon.service';
@@ -10,19 +10,22 @@ import { environment } from '../../../../../environments/environments';
   styleUrls: ['./items-grid.component.scss'],
 })
 export class ItemsGridComponent implements OnInit {
+  @Output() idEmitter = new EventEmitter<number>();
+
   buttonRole = ButtonRole;
 
   pokemon: Pokemon[] = [];
   loading = false;
   errorMessage = '';
 
-  constructor(
-    private pokemonService: PokemonService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.fetchPokemons();
+  }
+
+  onEdit(id: number): void {
+    this.idEmitter.emit(id);
   }
 
   onDelete(id: number): void {
@@ -80,8 +83,6 @@ export class ItemsGridComponent implements OnInit {
         } else {
           this.errorMessage = 'desconocido';
         }
-
-        this.changeDetectorRef.detectChanges();
       },
     });
   }

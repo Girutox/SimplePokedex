@@ -12,3 +12,13 @@ export interface Pokemon {
 export interface PokemonFetch {
   idAuthor: number;
 }
+
+export interface PokemonUpdate {
+  name: string;
+  image?: string;
+  attack: number;
+  defense: number;
+  hp: number;
+  type: string;
+  idAuthor: number;
+}

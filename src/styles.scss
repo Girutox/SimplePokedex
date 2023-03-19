@@ -52,7 +52,7 @@ body {
 }
 
 .errorText {
-  color: red;
+  color: vars.$error_color;
   font-weight: bold;
 }
 
