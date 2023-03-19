@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 import { PokemonService } from '../../services/pokemon.service';
@@ -10,11 +10,15 @@ import { environment } from '../../../../../environments/environments';
   styleUrls: ['./items-grid.component.scss'],
 })
 export class ItemsGridComponent implements OnInit {
+  @Input() filterCompomentRef: any | undefined;
+
   @Output() idEmitter = new EventEmitter<number>();
 
   buttonRole = ButtonRole;
 
-  pokemon: Pokemon[] = [];
+  pokemonMain: Pokemon[] = [];
+  pokemonFilter: Pokemon[] = [];
+
   loading = false;
   errorMessage = '';
 
@@ -34,16 +38,31 @@ export class ItemsGridComponent implements OnInit {
     }
   }
 
+  onFilter(name: string): void {
+    if (name !== '') {
+      this.pokemonFilter = this.pokemonFilter.filter(
+        a => a.name.toLocaleLowerCase().indexOf(name.toLocaleLowerCase()) >= 0
+      );
+    } else {
+      this.pokemonFilter = [...this.pokemonMain];
+    }
+  }
+
   fetchPokemons(): void {
     this.errorMessage = '';
     this.loading = true;
 
-    this.pokemon = [];
+    this.pokemonMain = [];
+    this.pokemonFilter = [];
     this.pokemonService
       .fetchPokemons({ idAuthor: environment.idAuthor })
       .subscribe({
         next: data => {
-          this.pokemon = data;
+          this.pokemonMain = data;
+          this.pokemonFilter = [...this.pokemonMain];
+
+          this.clearFilter();
+
           this.loading = false;
         },
         error: error => {
@@ -65,7 +84,6 @@ export class ItemsGridComponent implements OnInit {
     this.errorMessage = '';
     this.loading = true;
 
-    this.pokemon = [];
     this.pokemonService.deletePokemonById(id).subscribe({
       next: data => {
         this.loading = false;
@@ -85,5 +103,9 @@ export class ItemsGridComponent implements OnInit {
         }
       },
     });
+  }
+
+  clearFilter(): void {
+    if (this.filterCompomentRef) this.filterCompomentRef.clearFilter();
   }
 }

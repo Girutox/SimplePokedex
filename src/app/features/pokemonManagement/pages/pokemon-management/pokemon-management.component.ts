@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ItemsGridComponent } from '../../components/items-grid/items-grid.component';
 import { FormComponent } from '../../components/form/form.component';
 import { PokemonService } from '../../services/pokemon.service';
-import { environment } from '../../../../../environments/environments';
 
 @Component({
   selector: 'app-pokemon-management',
@@ -10,7 +9,6 @@ import { environment } from '../../../../../environments/environments';
   styleUrls: ['./pokemon-management.component.scss'],
 })
 export class PokemonManagementComponent {
-  @ViewChild('grid') itemsGridComponent: ItemsGridComponent | undefined;
   @ViewChild('form') formComponent: FormComponent | undefined;
 
   errorMessage = '';
