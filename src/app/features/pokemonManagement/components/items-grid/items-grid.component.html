@@ -35,7 +35,13 @@
         </td>
       </tr>
       <tr *ngIf="!pokemon.length" class="emptyData">
-        <td colspan="5">No existen registros</td>
+        <td colspan="5" [class.errorText]="errorMessage !== ''">
+          {{
+            errorMessage === ''
+              ? 'No existen registros'
+              : 'Error: ' + errorMessage
+          }}
+        </td>
       </tr>
     </tbody>
   </table>

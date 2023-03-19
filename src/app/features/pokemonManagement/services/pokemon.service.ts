@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, finalize, Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Pokemon, PokemonFetch } from '../models/pokemon';
+import { environment } from '../../../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -8,22 +10,13 @@ import { BehaviorSubject, catchError, finalize, Observable, of } from 'rxjs';
 export class PokemonService {
   constructor(private http: HttpClient) {}
 
-  // public isLoading$ = new BehaviorSubject<boolean>(false);
-  public erros$ = new BehaviorSubject<string | null>(null);
-
-  fetchPokemons(): Observable<any> {
-    // this.isLoading$.next(true);
-    this.erros$.next(null);
+  fetchPokemons(payload: PokemonFetch): Observable<Pokemon[]> {
     return this.http
-      .get(
-        'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/pkm-msa-evaluation/pokemon/?idAuthor=1'
-      )
+      .get<Pokemon[]>(`${environment.apiBaseUrl}?idAuthor=${payload.idAuthor}`)
       .pipe(
-        catchError(err => {
-          this.erros$.next(err);
-          return of([]);
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
         })
-        // finalize(() => this.isLoading$.next(false))
       );
   }
 }

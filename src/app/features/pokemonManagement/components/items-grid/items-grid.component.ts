@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { ButtonRole } from '../../../../core/enums/buttonRole.enum';
 import { PokemonService } from '../../services/pokemon.service';
-import { catchError, finalize, Observable, ObservableInput } from 'rxjs';
 
 @Component({
   selector: 'app-items-grid',
@@ -14,7 +13,6 @@ export class ItemsGridComponent implements OnInit {
 
   pokemon: Pokemon[] = [];
   loading = false;
-  error = false;
   errorMessage = '';
 
   constructor(private pokemonService: PokemonService) {}
@@ -24,26 +22,27 @@ export class ItemsGridComponent implements OnInit {
   }
 
   fetchPokemons(): void {
-    this.error = false;
     this.errorMessage = '';
     this.loading = true;
 
     this.pokemon = [];
-    this.pokemonService
-      .fetchPokemons()
-      .pipe(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        catchError((err): ObservableInput<any> => {
-          this.error = true;
-          this.errorMessage = err.message;
-        }),
-        finalize(() => {
-          this.loading = false;
-        })
-      )
-      .subscribe(response => {
-        this.pokemon = response;
-      });
+    this.pokemonService.fetchPokemons({ idAuthor: 1 }).subscribe({
+      next: data => {
+        this.pokemon = data;
+        this.loading = false;
+      },
+      error: error => {
+        this.loading = false;
+
+        if (error.status === 400) {
+          this.errorMessage = 'petición errónea de la información';
+        } else if (error.status === 404) {
+          this.errorMessage =
+            'no se ha provisto el "IdAuthor" para la búsqueda de información';
+        } else {
+          this.errorMessage = 'desconocido';
+        }
+      },
+    });
   }
 }
