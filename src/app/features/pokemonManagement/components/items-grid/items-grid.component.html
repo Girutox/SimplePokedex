@@ -4,8 +4,10 @@
       <tr>
         <th>Nombre</th>
         <th>Imagen</th>
+        <th>Tipo</th>
         <th>Ataque</th>
         <th>Defensa</th>
+        <th>Salud</th>
         <th class="customSize01">Acciones</th>
       </tr>
     </thead>
@@ -19,8 +21,10 @@
             width="50"
             height="50" />
         </td>
+        <td class="leftColumn">{{ item.type }}</td>
         <td class="rightColumn">{{ item.attack }}</td>
         <td class="rightColumn">{{ item.defense }}</td>
+        <td class="rightColumn">{{ item.hp }}</td>
         <td class="centerColumn">
           <div class="actionColumn">
             <app-custom-button
@@ -39,7 +43,7 @@
         </td>
       </tr>
       <tr *ngIf="!pokemonFilter.length" class="emptyData">
-        <td colspan="5" [class.errorText]="errorMessage !== ''">
+        <td colspan="7" [class.errorText]="errorMessage !== ''">
           {{
             errorMessage === ''
               ? 'No existen registros'
