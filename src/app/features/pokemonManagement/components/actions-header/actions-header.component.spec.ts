@@ -32,4 +32,11 @@ describe('ActionsHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit event when button is clicked', () => {
+    spyOn(component, 'onNew');
+    const button = fixture.nativeElement.querySelector('app-custom-button');
+    button.click();
+    expect(component.onNew).toHaveBeenCalled();
+  });
 });

@@ -23,4 +23,13 @@ describe('ItemsGridComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit id on edit', () => {
+    const id = 1;
+    spyOn(component.idEmitter, 'emit');
+
+    component.onEdit(id);
+
+    expect(component.idEmitter.emit).toHaveBeenCalledWith(id);
+  });
 });
